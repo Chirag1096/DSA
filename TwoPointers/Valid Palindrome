@@ -1,0 +1,36 @@
+//https://leetcode.com/problems/valid-palindrome/description/
+public class Solution {
+    public bool IsPalindrome(string s) {
+        StringBuilder formatInput = new StringBuilder(s.Length);
+        for(int i=0; i< s.Length; i++)
+        {
+            if(s[i] >= 'A' && s[i] <= 'Z')
+            {
+                formatInput.Append((char)(s[i] + 32));
+            }
+            else if(s[i] >= 'a' && s[i] <= 'z')
+            {
+                formatInput.Append(s[i]);
+            }
+            else if(s[i] >= '0' && s[i] <= '9')
+            {
+                formatInput.Append(s[i]);
+            }
+        }
+        int left =0;
+        int right = formatInput.Length-1;
+        while(left<right)
+        {
+            if(formatInput[left] == formatInput[right])
+            {
+                left++;
+                right--;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
