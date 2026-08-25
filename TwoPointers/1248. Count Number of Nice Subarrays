@@ -1,0 +1,25 @@
+https://leetcode.com/problems/count-number-of-nice-subarrays/description/
+
+public class Solution {
+    public int FindSubArray(int[] nums, int goal)
+    {
+         int left = 0, right = 0, sum =0, count = 0;
+         if(goal < 0) return 0;
+         while(right < nums.Length)
+         {
+            sum += nums[right]%2;
+            while(sum > goal)
+            {
+                sum -= nums[left]%2;
+                left++;
+            }
+            count += right-left+1;
+            right++;
+         }
+         return count;
+    }
+
+    public int NumberOfSubarrays(int[] nums, int k) {
+        return FindSubArray(nums, k) - FindSubArray(nums, k-1);
+    }
+}
