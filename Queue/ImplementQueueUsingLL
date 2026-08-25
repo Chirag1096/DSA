@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HorseGameAssignment
+{
+    class QNode
+    {
+        internal int data;
+        internal QNode next;
+        public QNode(int data)
+        {
+            this.data = data;
+            this.next = null;
+        }
+
+    }
+    internal class ImplementQueueUsingLL
+    {
+        private QNode head, tail;
+        public ImplementQueueUsingLL()
+        {
+            head = tail = null;
+        }
+        public void Enqueue(int item)
+        {
+            QNode qNode = new QNode(item);
+            if(head == null)
+            {
+                head = tail = qNode;
+            }
+
+            tail.next = qNode;
+            tail = qNode;
+        }
+
+        public void Dequeue()
+        {
+            if(head == null)
+            {
+                return;
+            }
+
+            QNode temp = head;
+            head = head.next;
+
+            if(head == null)
+            {
+                tail = null;
+            }
+
+        }
+
+        public void Print()
+        {
+            if(head == null)
+            {
+                Console.WriteLine("Queue is empty");
+                return;
+            }
+
+            QNode temp = head;
+            while(temp != null)
+            {
+                Console.WriteLine(temp.data);
+                temp = temp.next;
+            }
+        }
+    }
+}
+
+
+ImplementQueueUsingLL queueUsingLL = new ImplementQueueUsingLL();
+queueUsingLL.Enqueue(10);
+queueUsingLL.Enqueue(20);
+queueUsingLL.Enqueue(30);
+queueUsingLL.Dequeue();
+queueUsingLL.Enqueue(40);
+queueUsingLL.Dequeue();
+queueUsingLL.Enqueue(50);
+
+queueUsingLL.Print();
