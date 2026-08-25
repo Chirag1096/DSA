@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HorseGameAssignment
+{
+    internal class QueueImplementation
+    {
+        private static int front, rear, capacity;
+        private static int[] queue;
+
+        public QueueImplementation(int size)
+        {
+            capacity = size;
+            queue = new int[capacity];
+            front = 0;
+            rear = 0;
+        }
+
+        public void Enqueue(int item)
+        {
+            if (rear == capacity)
+            {
+                Console.WriteLine("Queue is full");
+                return;
+            }
+            queue[rear] = item;
+            rear++;
+            return;
+        }
+
+        public void DeQueue()
+        {
+            if(front == rear)
+            {
+                Console.WriteLine("Queue is empty");
+                return;
+            }
+
+            for(int i=0; i < rear-1; i++)
+            {
+                queue[i] = queue[i + 1];
+            }
+            if(rear<capacity)
+            {
+                queue[rear] = 0;
+            }
+            rear--;
+            return;
+        }
+
+        public void Print()
+        {
+            if (front == rear)
+            {
+                Console.WriteLine("Queue is empty");
+                return;
+            }
+
+            for(int i=front; i<rear; i++)
+            {
+                Console.WriteLine(queue[i]);
+            }
+            return;
+        }
+
+        public void PrintFront()
+        {
+            if (front == rear)
+            {
+                Console.WriteLine("Queue is empty");
+                return;
+            }
+
+            Console.WriteLine($"Front : {queue[front]}");
+            return;
+        }
+    }
+}
+
+
+QueueImplementation queue = new QueueImplementation(10);
+
+queue.Print();
+
+queue.Enqueue(10);
+queue.Enqueue(20);
+
+queue.DeQueue();
+
+queue.Enqueue(30);
+queue.Enqueue(40);
+
+queue.DeQueue();
+
+queue.Print();
+
+queue.Enqueue(50);
+
+queue.PrintFront();
+
+queue.Print();
