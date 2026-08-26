@@ -1,0 +1,74 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HorseGameAssignment
+{
+    internal class StackUsingArray<T>
+    {
+        int top;
+        List<T> stack;
+                    
+        public StackUsingArray(int capacity)
+        {
+            top = -1;
+            stack = new List<T>(capacity);
+        }
+    
+        public void Push(T item)
+        {
+            if(top == stack.Capacity-1)
+            {
+                Console.WriteLine("Stack is full");
+                return;
+            }
+            top++;
+            stack.Add(item);
+            Console.WriteLine("Item pushed " + item);
+        }
+
+        public void Pop()
+        {
+            if (top == -1)
+            {
+                Console.WriteLine("Stack is empty");
+                return;
+            }
+            stack.RemoveAt(top);
+            Console.WriteLine("Item pushed popped");
+            top--;
+            Console.WriteLine("Top : " + top);
+        }
+
+        public void Display()
+        {
+            if(top ==-1)
+            {
+                Console.WriteLine("Stack is empty!");
+                return;
+            }
+            for(int i=0; i<=top; i++)
+            {
+                Console.WriteLine(stack[i]);
+            }
+        }
+    }
+}
+
+
+StackUsingArray<int> stack = new StackUsingArray<int>(10);
+stack.Display();
+stack.Pop();
+stack.Push(10);
+stack.Push(20);
+stack.Push(30);
+stack.Pop();
+stack.Push(40);
+stack.Push(50);
+stack.Pop();
+stack.Display();
+stack.Pop();
+stack.Pop();
+stack.Pop();
+stack.Display();
