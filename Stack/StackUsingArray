@@ -72,3 +72,4 @@ stack.Pop();
 stack.Pop();
 stack.Pop();
 stack.Display();
+stack.Push(60);
