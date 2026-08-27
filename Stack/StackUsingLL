@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HorseGameAssignment
+{
+    class Stack
+    {
+        internal int data;
+        internal Stack? next;
+
+        public Stack(int data)
+        {
+            this.data = data;
+            next = null;
+        }
+    }
+    internal class StackUsingLL
+    {
+        Stack? top = null;
+        public void Push(int data)
+        {
+            Stack node = new Stack(data);
+            if(top == null)
+            {
+                top = node;
+            }
+            else
+            {
+                node.next = top;
+                top = node;
+            }
+            return;
+        }
+
+        public void Pop()
+        {
+            if(top == null)
+            {
+                Console.WriteLine("Stack is empty");
+                return;
+            }
+
+            Stack? node = top;
+            top = top.next;
+            node = null;
+            return;
+        }
+
+        public void Display()
+        {
+            if (top == null)
+            {
+                Console.WriteLine("Stack is empty");
+                return;
+            }
+            Stack temp = top;
+            while(temp != null)
+            {
+                Console.WriteLine(temp.data);
+                temp = temp.next;
+            }
+            return;
+        }
+    }
+}
+
+StackUsingLL stack = new StackUsingLL();
+stack.Push(10);
+stack.Push(20);
+stack.Push(30);
+stack.Display();
+stack.Pop();
+stack.Push(40);
+stack.Push(50);
+stack.Push(0);
+stack.Pop();
+stack.Display();
