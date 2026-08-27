@@ -73,6 +73,7 @@ stack.Display();
 stack.Pop();
 stack.Push(40);
 stack.Push(50);
-stack.Push(0);
+stack.Push(60);
 stack.Pop();
 stack.Display();
+stack.Push(70);
