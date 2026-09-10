@@ -1,0 +1,95 @@
+/******public int[] BinarySearch(int[] nums, int left, int right, int target)     //this solution will take o(n) not optimium
+    {
+        if(left > right)
+        {
+            return new int[] { -1, -1 };
+        }
+        int mid = (left + right)/2;
+        if(nums[mid] == target)
+        {
+            int lindex = mid, rindex = mid;
+            while(nums[lindex] == target)lindex--;
+            while(nums[rindex] == target)rindex++;
+            return new int[] {lindex+1, rindex-1};
+        }
+        else if(nums[mid] < target)
+        {
+            return BinarySearch(nums, mid+1, right, target);
+        }
+        else
+        {
+            return BinarySearch(nums, left, mid-1, target);
+        }
+    }
+    public int[] SearchRange(int[] nums, int target) {
+        return BinarySearch(nums, 0, nums.Length-1, target);
+    }******/
+
+
+
+
+o(log n)
+public class Solution {
+    public int LBinarySearch(int[] nums, int left, int right, int target)
+    {
+        if(left > right)
+        {
+            return -1;
+        }
+        int mid = (left + right)/2;
+        if(nums[mid] == target)
+        {
+            int ans = LBinarySearch(nums, left, mid-1, target);
+            if(ans != -1)
+            {
+                return ans;
+            }
+            else
+            {
+                return mid;
+            }
+        }
+        else if(nums[mid] < target)
+        {
+            return LBinarySearch(nums, mid+1, right, target);
+        }
+        else
+        {
+            return LBinarySearch(nums, left, mid-1, target);
+        }
+    }
+
+        public int RBinarySearch(int[] nums, int left, int right, int target)
+    {
+        if(left > right)
+        {
+            return -1;
+        }
+        int mid = (left + right)/2;
+        if(nums[mid] == target)
+        {
+            int ans = RBinarySearch(nums, mid+1, right, target);
+            if(ans != -1)
+            {
+                return ans;
+            }
+            else
+            {
+                return mid;
+            }
+        }
+        else if(nums[mid] < target)
+        {
+            return RBinarySearch(nums, mid+1, right, target);
+        }
+        else
+        {
+            return RBinarySearch(nums, left, mid-1, target);
+        }
+    }
+    public int[] SearchRange(int[] nums, int target) {
+        int lIndex = LBinarySearch(nums, 0, nums.Length-1, target);
+        int rIndex = RBinarySearch(nums, 0, nums.Length-1, target);
+        return new int[] {lIndex, rIndex};
+    }
+}
