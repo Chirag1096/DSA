@@ -1,0 +1,25 @@
+public class Solution {
+    public int BinarySearch(int num, int left, int right)
+    {
+        if(left>right)
+        {
+            return right;
+        }
+        int mid = left+(right-left)/2;
+        if((long)mid*mid == num)
+        {
+            return mid;
+        }
+        else if((long)mid*mid< num)
+        {
+            return BinarySearch(num, mid+1, right);
+        }
+        else
+        {
+            return BinarySearch(num, left, mid-1);
+        }
+    }
+    public int MySqrt(int x) {
+        return BinarySearch(x, 0, int.MaxValue);
+    }
+}
