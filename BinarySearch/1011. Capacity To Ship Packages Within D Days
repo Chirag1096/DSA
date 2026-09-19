@@ -1,0 +1,34 @@
+public class Solution {
+    public int BinarySearch(int[] nums, int left, int right, int h)
+    {
+        if(left > right)
+        {
+            return left;
+        }
+        int mid = left+(right-left)/2;
+        int days=1; int i=0;
+        int totalCapacity = 0;
+        while(i<nums.Length)
+        {
+            if(totalCapacity + nums[i] > mid)
+            {
+                totalCapacity = 0;
+                days++;
+            }
+            totalCapacity += nums[i];
+            i++;
+        }
+        if(days <= h)
+        {
+            return BinarySearch(nums, left, mid-1, h);
+        }
+        else
+        {
+            return BinarySearch(nums, mid+1, right, h);
+        }
+    }
+    public int ShipWithinDays(int[] weights, int days) {
+        int max = weights.Max();
+        return BinarySearch(weights, max, weights.Sum(), days);
+    }
+}
