@@ -1,0 +1,33 @@
+public class Solution {
+    public int BinarySearch(int[] position, int m, int left, int right)
+    {
+        if(left > right)
+        {
+            return right;
+        }
+        int mid = left + (right-left)/2;
+        int balls = 1;
+        int lastBall = position[0];
+        for(int i=1; i<position.Length;i++)
+        {
+            if(position[i]-lastBall >= mid)
+            {
+                lastBall = position[i];
+                balls++;
+            }
+        }
+        if(balls >= m)
+        {
+            return BinarySearch(position, m, mid+1, right);
+        }
+        else
+        {
+            return BinarySearch(position, m, left, mid-1);
+        }
+    }
+    public int MaxDistance(int[] position, int m) {
+        Array.Sort(position);
+        int maxForce = Math.Abs(position[position.Length-1]-position[0]);
+        return BinarySearch(position, m, 1, maxForce);
+    }
+}
